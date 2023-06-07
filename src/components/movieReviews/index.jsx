@@ -31,7 +31,7 @@ export default function MovieReviews({ movie }) {
       <Table sx={styles.table} aria-label="reviews table">
         <TableHead>
           <TableRow>
-            <TableCell >Author</TableCell>
+            <TableCell>Author</TableCell>
             <TableCell align="center">Excerpt</TableCell>
             <TableCell align="right">More</TableCell>
           </TableRow>
@@ -42,8 +42,8 @@ export default function MovieReviews({ movie }) {
               <TableCell component="th" scope="row">
                 {r.author}
               </TableCell>
-              <TableCell >{excerpt(r.content)}</TableCell>
-              <TableCell >
+              <TableCell>{excerpt(r.content)}</TableCell>
+              <TableCell>
                 <Link
                   to={`/reviews/${r.id}`}
                   state={{
