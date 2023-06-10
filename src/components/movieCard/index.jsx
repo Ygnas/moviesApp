@@ -14,6 +14,7 @@ import img from "../../images/film-poster-placeholder.png";
 import { Link } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import { MoviesContext } from "../../contexts/moviesContext";
+import PlaylistAddCheckIcon from "@mui/icons-material/PlaylistAddCheck";
 
 const styles = {
   card: { maxWidth: 345 },
@@ -24,12 +25,17 @@ const styles = {
 };
 
 export default function MovieCard({ movie, action }) {
-  const { favourites, addToFavourites } = useContext(MoviesContext);
-
+  const { favourites, addToFavourites, mustWatch, addToMustWatch } = useContext(MoviesContext);
   if (favourites.find((id) => id === movie.id)) {
     movie.favourite = true;
   } else {
     movie.favourite = false
+  }
+
+  if (mustWatch.find((id) => id === movie.id)) {
+    movie.mustWatch = true;
+  } else {
+    movie.mustWatch = false
   }
 
   return (
@@ -37,11 +43,24 @@ export default function MovieCard({ movie, action }) {
       <CardHeader
         sx={styles.header}
         avatar={
-          movie.favourite ? (
-            <Avatar sx={styles.avatar}>
-              <FavoriteIcon />
-            </Avatar>
-          ) : null
+          // Shorthand <></> for Fragment - let you group a list of children without adding extra nodes
+          // I did it this way because I can only return a single entity,
+          // And I wanted to be able to Mark movie as favourite and as a must watch later at the same time.
+          // I choose to do it this way because some upcoming movies overlap with movies in homepage.
+          <>{
+            movie.favourite ? (
+              <Avatar sx={styles.avatar}>
+                <FavoriteIcon />
+              </Avatar>
+            ) : null}
+            {
+              movie.mustWatch ? (
+                <Avatar sx={styles.avatar}>
+                  <PlaylistAddCheckIcon />
+                </Avatar>
+              ) : null
+            }
+          </>
         }
         title={
           <Typography variant="h5" component="p">
