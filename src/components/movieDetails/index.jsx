@@ -10,6 +10,7 @@ import NavigationIcon from "@mui/icons-material/Navigation";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from '../movieReviews'
+import MediaActorList from "../mediaActorList";
 
 const styles = {
   chipSet: {
@@ -66,6 +67,10 @@ const MovieDetails = ({ movie }) => {
         />
         <Chip label={`Released: ${movie.release_date}`} />
       </Paper>
+      <Typography variant="h6" component="p">
+        Top Billed Cast:
+      </Typography>
+      <MediaActorList media={movie}></MediaActorList>
       <Fab
         color="secondary"
         variant="extended"
