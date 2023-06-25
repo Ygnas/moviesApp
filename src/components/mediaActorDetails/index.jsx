@@ -22,14 +22,10 @@ const styles = {
 const MediaActorDetails = ({ actor }) => {
   return (
     <>
-      <Typography variant="h3" component="h3">
-        {actor.name}
-      </Typography>
-
-      <Typography variant="h5" component="p">
+      <Typography variant="h4" component="p">
         Biography
       </Typography>
-
+      <br />
       <Typography variant="h6" component="p">
         {actor.biography}
       </Typography>
