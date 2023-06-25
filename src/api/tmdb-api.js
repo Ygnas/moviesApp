@@ -108,3 +108,14 @@ export const getMediaCast = (id) => {
       return json.cast;
     });
 };
+
+export const getActor = (args) => {
+  const [, idPart] = args.queryKey;
+  const { id } = idPart;
+  return fetch(
+    `https://api.themoviedb.org/3/person/${id}?language=en-US&api_key=${import.meta.env.VITE_TMDB_KEY}`
+  ).then((res) => res.json())
+    .then((json) => {
+      return json;
+    });
+};

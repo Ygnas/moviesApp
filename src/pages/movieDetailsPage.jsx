@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import MovieDetails from "../components/movieDetails";
-import PageTemplate from "../components/templateMoviePage";
+import PageTemplate from "../components/templateMediaPage";
 import { getMovie } from '../api/tmdb-api'
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner'
@@ -26,7 +26,7 @@ const MovieDetailsPage = () => {
     <>
       {movie ? (
         <>
-          <PageTemplate movie={movie}>
+          <PageTemplate media={movie}>
             <MovieDetails movie={movie} />
           </PageTemplate>
         </>
