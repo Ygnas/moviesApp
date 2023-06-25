@@ -21,27 +21,33 @@ const styles = {
   },
 };
 
-const MovieHeader = (props) => {
-  const movie = props.movie;
+const MediaHeader = ({ data }) => {
   const favouriteMovies = JSON.parse(localStorage.getItem("favourites"));
-
   return (
     <Paper component="div" sx={styles.root}>
       <IconButton aria-label="go back">
         <ArrowBackIcon color="primary" fontSize="large" />
       </IconButton>
-      {favouriteMovies.some(m => m.id === movie.id) ? (
+      {favouriteMovies.some(m => m.id === data.id) ? (
         <Avatar sx={styles.avatar}>
           <FavoriteIcon />
         </Avatar>
       ) : null}
       <Typography variant="h4" component="h3">
-        {movie.title}{"   "}
-        <a href={movie.homepage}>
-          <HomeIcon color="primary" fontSize="='large" />
-        </a>
+        {data.title || data.name}{"   "}
+        {
+          data.homepage
+            ? <a href={data.homepage}>
+              <HomeIcon color="primary" fontSize="='large" />
+            </a>
+            : null
+        }
         <br />
-        <span>{`${movie.tagline}`} </span>
+        {
+          data.tagline
+            ? <span>{`${data.tagline}`} </span>
+            : null
+        }
       </Typography>
       <IconButton aria-label="go forward">
         <ArrowForwardIcon color="primary" fontSize="large" />
@@ -50,4 +56,4 @@ const MovieHeader = (props) => {
   );
 };
 
-export default MovieHeader;
+export default MediaHeader;
