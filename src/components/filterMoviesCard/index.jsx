@@ -73,6 +73,7 @@ export default function FilterMoviesCard(props) {
           />
           <FormControl sx={styles.formControl}>
             <InputLabel id="genre-label">Genre</InputLabel>
+            <br />
             <Select
               labelId="genre-label"
               id="genre-select"
