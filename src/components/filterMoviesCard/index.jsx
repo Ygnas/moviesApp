@@ -12,6 +12,7 @@ import Select from "@mui/material/Select";
 import { getGenres } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner'
+import { Switch } from "@mui/material";
 
 const styles = {
   root: {
@@ -52,6 +53,10 @@ export default function FilterMoviesCard(props) {
 
   const handleGenreChange = (e) => {
     handleUserImput(e, "genre", e.target.value);
+  };
+
+  const handleSortChange = (e) => {
+    handleUserImput(e, "sort", e.target.checked)
   };
 
   return (
@@ -97,6 +102,7 @@ export default function FilterMoviesCard(props) {
             <SortIcon fontSize="large" />
             Sort the movies.
           </Typography>
+          <Switch color="info" onChange={handleSortChange} checked={props.sortFilter} />
         </CardContent>
       </Card>
     </>
