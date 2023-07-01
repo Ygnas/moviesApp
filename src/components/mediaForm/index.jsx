@@ -141,7 +141,6 @@ const MediaForm = ({ movie }) => {
               value={value}
               id="runtime"
               label="Runtime in minutes"
-              autoFocus
             />
           )}
         />
@@ -166,7 +165,6 @@ const MediaForm = ({ movie }) => {
               onChange={onChange}
               value={value}
               id="release_date"
-              autoFocus
             />
           )}
         />
@@ -191,7 +189,6 @@ const MediaForm = ({ movie }) => {
               value={value}
               id="company"
               label="Production Company"
-              autoFocus
             />
           )}
         />
