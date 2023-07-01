@@ -32,7 +32,7 @@ const Image = ({ image }) => {
   return (
     <ImageList cols={1}>
       {images.map((i) => (
-        <ImageSource path={i.file_path} />
+        <ImageSource path={i.file_path} key={i.file_path} />
       ))}
     </ImageList>
   );
