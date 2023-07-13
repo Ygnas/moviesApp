@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Header from "../headerMovieList";
 import FilterCard from "../filterMoviesCard";
 import Grid from "@mui/material/Grid";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
 import MovieList from "../movieList";
+import { AuthContext } from "../../contexts/authContext";
 
 const styles = {
   root: {
@@ -23,6 +24,7 @@ function MovieListPageTemplate({ movies, title, action }) {
   const [genreFilter, setGenreFilter] = useState("0");
   const [sortFilter, setSortFilter] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const { token } = useContext(AuthContext);
 
   const genreId = Number(genreFilter);
 
@@ -57,14 +59,15 @@ function MovieListPageTemplate({ movies, title, action }) {
           <MovieList action={action} movies={displayedMovies} />
         </Grid>
       </Grid>
-      <Fab
-        color="secondary"
-        variant="extended"
-        onClick={() => setDrawerOpen(true)}
-        sx={styles.fab}
-      >
-        Filter
-      </Fab>
+      {token ?
+        <Fab
+          color="secondary"
+          variant="extended"
+          onClick={() => setDrawerOpen(true)}
+          sx={styles.fab}
+        >
+          Filter
+        </Fab> : () => { }}
       <Drawer
         anchor="left"
         open={drawerOpen}
