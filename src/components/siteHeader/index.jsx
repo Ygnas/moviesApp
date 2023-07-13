@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -11,6 +11,7 @@ import Menu from "@mui/material/Menu";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { AuthContext } from "../../contexts/authContext";
 
 const styles = {
   title: {
@@ -26,6 +27,7 @@ const SiteHeader = () => {
   const open = Boolean(anchorEl);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
+  const { token, signout } = useContext(AuthContext);
 
   const menuOptions = [
     { label: "Home", path: "/" },
@@ -101,6 +103,15 @@ const SiteHeader = () => {
                   {opt.label}
                 </Button>
               ))}
+              {token ? (
+                <Button color="inherit" onClick={() => signout()}>
+                  Sign out
+                </Button>
+
+              ) : <Button color="inherit" onClick={() => navigate("/login")}>
+                Login
+              </Button>
+              }
             </>
           )}
         </Toolbar>
