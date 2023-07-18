@@ -31,7 +31,7 @@ const HomePage = (props) => {
         title="Discover Movies"
         movies={movies}
         action={(movie) => {
-          return <AddToFavouritesIcon movie={movie} />
+          return <AddToFavouritesIcon media={movie} />
         }}
       />
       <PaginationList count={data.total_pages} page={data.page} onChange={handlePageChange} />

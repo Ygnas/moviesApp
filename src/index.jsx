@@ -9,7 +9,6 @@ import SiteHeader from './components/siteHeader'
 import UpcomingMoviesPage from "./pages/upcomingMoviesPage";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from 'react-query/devtools'
-import MoviesContextProvider from "./contexts/moviesContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage'
 import TrendingMoviesPage from "./pages/trendingMoviesPage";
 import ActorDetailsPage from "./pages/actorDetailsPage";
@@ -18,6 +17,7 @@ import FantasyMovie from "./pages/fantasyMoviePage";
 import ProtectedRoute from "./protectedRoute";
 import LoginPage from "./pages/loginPage";
 import AuthContextProvider from "./contexts/authContext";
+import MediaContextProvider from "./contexts/mediaContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -35,7 +35,7 @@ const App = () => {
       <BrowserRouter>
         <AuthContextProvider>
           <SiteHeader />
-          <MoviesContextProvider>
+          <MediaContextProvider>
             <Routes>
               <Route path="/fantasy/movie" element={<FantasyMovie />} />
               <Route path="/movie/form" element={<AddMediaPage />} />
@@ -54,7 +54,7 @@ const App = () => {
               <Route path="/" element={<HomePage />} />
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
-          </MoviesContextProvider>
+          </MediaContextProvider>
         </AuthContextProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
