@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
 import PageTemplate from "../components/templateMovieListPage";
-import AddToFavouritesIcon from '../components/cardIcons/addToFavourites'
-import { MoviesContext } from "../contexts/moviesContext";
+import { MediaContext } from "../contexts/mediaContext";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const FantasyMovie = (props) => {
-  const { fantasyMovies } = useContext(MoviesContext);
+  const { fantasyMovies } = useContext(MediaContext);
   return (
     <PageTemplate
       title={

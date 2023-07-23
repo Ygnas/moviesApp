@@ -28,7 +28,7 @@ export const Basic = () => {
     <Grid container spacing={5}>
       <MovieList
         movies={movies}
-        action={(movie) => <AddToFavouritesIcon movie={movie} />}
+        action={(movie) => <AddToFavouritesIcon media={movie} />}
       />
     </Grid>
   );

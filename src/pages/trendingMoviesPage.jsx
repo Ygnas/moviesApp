@@ -31,7 +31,7 @@ const TrendingMoviesPage = (props) => {
         title="Trending Movies"
         movies={movies}
         action={(movie) => {
-          return <AddToFavouritesIcon movie={movie} />
+          return <AddToFavouritesIcon media={movie} />
         }}
       />
       <PaginationList count={data.total_pages} page={data.page} onChange={handlePageChange} />

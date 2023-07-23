@@ -28,7 +28,7 @@ const MediaHeader = ({ data }) => {
       <IconButton aria-label="go back">
         <ArrowBackIcon color="primary" fontSize="large" />
       </IconButton>
-      {favouriteMovies.some(m => m.id === data.id) ? (
+      {favouriteMovies?.some(m => m.id === data.id) ? (
         <Avatar sx={styles.avatar}>
           <FavoriteIcon />
         </Avatar>

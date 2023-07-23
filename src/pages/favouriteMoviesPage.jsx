@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import PageTemplate from "../components/templateMovieListPage";
-import { MoviesContext } from "../contexts/moviesContext";
+import { MediaContext } from "../contexts/mediaContext";
 import { useQueries } from "react-query";
-import { getMovie } from "../api/tmdb-api";
+import { getActor, getMovie } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
 import RemoveFromFavourites from "../components/cardIcons/removeFromFavourites";
 import WriteReview from "../components/cardIcons/writeReview";
 
 const FavouriteMoviesPage = (props) => {
-  const { favourites: movieIds } = useContext(MoviesContext);
+  const { favourites: movieIds } = useContext(MediaContext);
 
   // Create an array of queries and run them in parallel.
   const favouriteMovieQueries = useQueries(
