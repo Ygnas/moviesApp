@@ -5,15 +5,25 @@ export const MediaContext = React.createContext(null);
 const MediaContextProvider = (props) => {
   const [myReviews, setMyReviews] = useState({})
   const [favourites, setFavourites] = useState([]);
+  const [favouriteActors, setFavouriteActors] = useState([]);
   const [mustWatch, setMustWatch] = useState([]);
   const [fantasyMovies, setFantasyMovies] = useState([]);
 
-  const addToFavourites = (movie) => {
-    let updatedFavourites = [...favourites];
-    if (!favourites.includes(movie.id)) {
-      updatedFavourites.push(movie.id);
+  const addToFavourites = (media) => {
+    if (media.title) {
+      let updatedFavourites = [...favourites];
+      if (!favourites.includes(media.id)) {
+        updatedFavourites.push(media.id);
+      }
+      setFavourites(updatedFavourites);
+    } else {
+      let updatedFavourites = [...favouriteActors];
+      console.log(media)
+      if (!favouriteActors.includes(media.id)) {
+        updatedFavourites.push(media.id);
+      }
+      setFavouriteActors(updatedFavourites);
     }
-    setFavourites(updatedFavourites);
   };
 
   const addToMustWatch = (movie) => {
@@ -25,8 +35,12 @@ const MediaContextProvider = (props) => {
   };
 
   // We will use this function in a later section
-  const removeFromFavourites = (movie) => {
-    setFavourites(favourites.filter((mId) => mId !== movie.id));
+  const removeFromFavourites = (media) => {
+    if (media.title) {
+      setFavourites(favourites.filter((mId) => mId !== media.id));
+    } else {
+      setFavourites(favouriteActors.filter((mId) => mId !== media.id));
+    }
   };
 
   const removeFromMustWatch = (movie) => {
@@ -51,6 +65,7 @@ const MediaContextProvider = (props) => {
         favourites,
         addToFavourites,
         removeFromFavourites,
+        favouriteActors,
         addReview,
         mustWatch,
         addToMustWatch,

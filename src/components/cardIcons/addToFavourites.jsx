@@ -4,7 +4,7 @@ import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { AuthContext } from "../../contexts/authContext";
 
-const AddToFavouritesIcon = ({ media }) => {
+const AddToFavouritesIcon = ({ media, styles }) => {
   const context = useContext(MediaContext);
   const { token } = useContext(AuthContext);
 
@@ -16,9 +16,9 @@ const AddToFavouritesIcon = ({ media }) => {
   return (
     <>
       {
-        token ?
-          <IconButton aria- label="add to favorites" onClick={onUserSelect} >
-            <FavoriteIcon color="primary" fontSize="large" />
+        token && !context.favouriteActors.includes(media.id) && !context.favourites.includes(media.id) ?
+          <IconButton sx={styles?.favouriteIcon} aria- label="add to favorites" onClick={onUserSelect} >
+            <FavoriteIcon color="primary" />
           </IconButton > : () => { }
       }
     </>

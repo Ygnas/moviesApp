@@ -4,8 +4,8 @@ import FilterCard from "../filterMoviesCard";
 import Grid from "@mui/material/Grid";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
-import MovieList from "../mediaList";
 import { AuthContext } from "../../contexts/authContext";
+import MediaList from "../mediaList";
 
 const styles = {
   root: {
@@ -19,7 +19,7 @@ const styles = {
   },
 };
 
-function MovieListPageTemplate({ movies, title, action }) {
+function ActorListPageTemplate({ actors, title, action }) {
   const [titleFilter, setTitleFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const [sortFilter, setSortFilter] = useState(false);
@@ -28,21 +28,21 @@ function MovieListPageTemplate({ movies, title, action }) {
 
   const genreId = Number(genreFilter);
 
-  let displayedMovies = movies
-    .filter((m) => {
-      return m.title?.toLowerCase().search(titleFilter.toLowerCase()) !== -1;
+  let displayedActors = actors
+    .filter((a) => {
+      return a.name?.toLowerCase().search(titleFilter.toLowerCase()) !== -1;
     })
-    .filter((m) => {
-      return genreId > 0 ? m.genre_ids.includes(genreId) : true;
+    .filter((a) => {
+      return genreId > 0 ? a.genre_ids.includes(genreId) : true;
     })
     .sort((a, b) => {
       if (sortFilter) {
-        return (a.title > b.title) - (a.title < b.title)
+        return (a.name > b.name) - (a.name < b.name)
       }
     });
 
   const handleChange = (type, value) => {
-    if (type === "title") {
+    if (type === "name") {
       setTitleFilter(value)
     } else if (type === "sort") {
       setSortFilter(value)
@@ -56,7 +56,7 @@ function MovieListPageTemplate({ movies, title, action }) {
           <Header title={title} />
         </Grid>
         <Grid item container spacing={5}>
-          <MovieList action={action} media={displayedMovies} />
+          <MediaList action={action} media={displayedActors} />
         </Grid>
       </Grid>
       {token ?
@@ -83,4 +83,4 @@ function MovieListPageTemplate({ movies, title, action }) {
     </>
   );
 }
-export default MovieListPageTemplate;
+export default ActorListPageTemplate;
