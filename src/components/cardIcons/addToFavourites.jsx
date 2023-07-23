@@ -17,9 +17,9 @@ const AddToFavouritesIcon = ({ media, styles }) => {
     <>
       {
         token && !context.favouriteActors.includes(media.id) && !context.favourites.includes(media.id) ?
-          <IconButton sx={styles?.favouriteIcon} aria- label="add to favorites" onClick={onUserSelect} >
+          <IconButton sx={styles?.favouriteIcon} aria-label="add to favorites" onClick={onUserSelect} >
             <FavoriteIcon color="primary" />
-          </IconButton > : () => { }
+          </IconButton > : null
       }
     </>
   );

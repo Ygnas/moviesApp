@@ -67,7 +67,7 @@ function MovieListPageTemplate({ movies, title, action }) {
           sx={styles.fab}
         >
           Filter
-        </Fab> : () => { }}
+        </Fab> : null}
       <Drawer
         anchor="left"
         open={drawerOpen}
