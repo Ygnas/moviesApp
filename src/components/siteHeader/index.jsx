@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { AuthContext } from "../../contexts/authContext";
+import Fade from '@mui/material/Fade';
 
 const styles = {
   title: {
@@ -33,11 +34,11 @@ const SiteHeader = () => {
     { label: "Home", path: "/" },
     { label: "Trending", path: "/movies/trending" },
     { label: "Upcoming", path: "/movies/upcoming" },
-    { label: "Favourites", path: "/movies/favourites" },
     { label: "Fantasy Movie", path: "/fantasy/movie" },
   ];
 
   const handleMenuSelect = (pageURL) => {
+    setAnchorEl(null)
     navigate(pageURL);
   };
 
@@ -103,6 +104,29 @@ const SiteHeader = () => {
                   {opt.label}
                 </Button>
               ))}
+              <Button
+                id="fade-button"
+                color="inherit"
+                aria-controls={open ? 'fade-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+                onClick={handleMenu}
+              >
+                Favourites
+              </Button>
+              <Menu
+                id="fade-menu"
+                MenuListProps={{
+                  'aria-labelledby': 'fade-button',
+                }}
+                anchorEl={anchorEl}
+                open={open}
+                onClose={() => setAnchorEl(null)}
+                TransitionComponent={Fade}
+              >
+                <MenuItem onClick={() => handleMenuSelect("/movies/favourites")}>Favourite Movies</MenuItem>
+                <MenuItem onClick={() => handleMenuSelect("/actors/favourites")}>Favourite Actors</MenuItem>
+              </Menu>
               {token ? (
                 <Button color="inherit" onClick={() => signout()}>
                   Sign out
