@@ -18,7 +18,6 @@ const MediaContextProvider = (props) => {
       setFavourites(updatedFavourites);
     } else {
       let updatedFavourites = [...favouriteActors];
-      console.log(media)
       if (!favouriteActors.includes(media.id)) {
         updatedFavourites.push(media.id);
       }
