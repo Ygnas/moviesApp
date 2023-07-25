@@ -65,7 +65,7 @@ export default function FilterMoviesCard(props) {
         <CardContent>
           <Typography variant="h5" component="h1">
             <FilterAltIcon fontSize="large" />
-            Filter the movies.
+            Filter the media.
           </Typography>
           <TextField
             sx={styles.formControl}
@@ -100,7 +100,7 @@ export default function FilterMoviesCard(props) {
         <CardContent>
           <Typography variant="h5" component="h1">
             <SortIcon fontSize="large" />
-            Sort the movies.
+            Sort the media.
           </Typography>
           <Switch color="info" onChange={handleSortChange} checked={props.sortFilter} />
         </CardContent>
