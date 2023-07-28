@@ -19,6 +19,7 @@ import LoginPage from "./pages/loginPage";
 import AuthContextProvider from "./contexts/authContext";
 import MediaContextProvider from "./contexts/mediaContext";
 import FavouriteActorPage from "./pages/favouriteActorPage";
+import SearchPage from "./pages/searchPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -40,6 +41,7 @@ const App = () => {
             <Routes>
               <Route path="/fantasy/movie" element={<FantasyMovie />} />
               <Route path="/movie/form" element={<AddMediaPage />} />
+              <Route path="/search" element={<SearchPage />} />
               <Route path="/actor/:id" element={
                 <ProtectedRoute>
                   <ActorDetailsPage />
