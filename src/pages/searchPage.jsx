@@ -14,9 +14,10 @@ const SearchPage = (props) => {
   const [year, setYear] = useState('');
   let currentPage = 1;
 
-  const { data, error, isLoading, isError, refetch } = useQuery("search", () => searchMovies({ title, includeAdult, language, currentPage, region, year }));
+  const { data, error, isLoading, isError, refetch } = useQuery("search", () => searchMovies({ title, includeAdult, language, currentPage, year }));
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: 100 }, (_, i) => currentYear - i);
+  const languages = ["en", "fa", "fr", "he", "hi", "hu", "id", "it", "ja", "lt", "ml", "nb", "nl", "no", "pl", "pt", "ro", "ru", "sk", "sl", "sr", "sv", "ta", "te", "th", "tr", "uk", "vi", "zh"]
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -34,7 +35,6 @@ const SearchPage = (props) => {
   const handleReset = () => {
     setTitle("");
     setYear("");
-    setRegion("");
     setIncludeAdult(false);
     setLanguage("");
   };
@@ -67,22 +67,17 @@ const SearchPage = (props) => {
 
           <Grid item xs={12} sm={3}>
             <TextField
+              select
               label="Language"
               value={language}
               onChange={(e) => setLanguage(e.target.value)}
               fullWidth
               margin="normal"
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={3}>
-            <TextField
-              label="Region"
-              value={region}
-              onChange={(e) => setRegion(e.target.value)}
-              fullWidth
-              margin="normal"
-            />
+            >
+              {languages.map((lang) => (
+                <MenuItem key={lang} value={lang}>{lang}</MenuItem>
+              ))}
+            </TextField>
           </Grid>
 
           <Grid item xs={12} sm={3}>

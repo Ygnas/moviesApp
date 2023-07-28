@@ -119,9 +119,9 @@ export const getActor = (args) => {
     });
 };
 
-export const searchMovies = ({ title, includeAdult, language, currentPage, region, year }) => {
+export const searchMovies = ({ title, includeAdult, language, currentPage, year }) => {
   return fetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=${import.meta.env.VITE_TMDB_KEY}&query=${title}&language=${language}&include_adult=${includeAdult}&page=${currentPage}&region=${region}&year=${year}`
+    `https://api.themoviedb.org/3/search/movie?api_key=${import.meta.env.VITE_TMDB_KEY}&query=${title}&language=${language}&include_adult=${includeAdult}&page=${currentPage}&year=${year}`
   )
     .then((response) => {
       if (!response.ok) {
