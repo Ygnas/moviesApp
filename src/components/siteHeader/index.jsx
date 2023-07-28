@@ -31,6 +31,7 @@ const SiteHeader = () => {
   const { token, signout } = useContext(AuthContext);
 
   const menuOptions = [
+    { label: "🔍", path: "/search"},
     { label: "Home", path: "/" },
     { label: "Trending", path: "/movies/trending" },
     { label: "Upcoming", path: "/movies/upcoming" },
