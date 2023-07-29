@@ -7,13 +7,15 @@ export default function MediaActorList({ media }) {
   const [actors, setActors] = useState([]);
 
   useEffect(() => {
-    getMediaCast(media.id).then((actors) => {
-      setActors(actors);
-    });
+    if (media.id) {
+      getMediaCast(media.id).then((actors) => {
+        setActors(actors);
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  let actorCards = actors.map((actor) => (
+  let actorCards = actors?.map((actor) => (
     <Grid key={actor.id} item xl={1} >
       <MediaActor actor={actor} />
     </Grid>

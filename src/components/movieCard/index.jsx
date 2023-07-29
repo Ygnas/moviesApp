@@ -29,7 +29,9 @@ const styles = {
 };
 
 export default function MovieCard({ movie, action, moveLeft, moveRight }) {
-  const { favourites, addToFavourites, mustWatch, addToMustWatch } = useContext(MediaContext);
+  const { favourites, mustWatch, getUploadedImage } = useContext(MediaContext);
+  const uploadedImage = getUploadedImage(movie.title);
+
   if (favourites.find((id) => id === movie.id)) {
     movie.favourite = true;
   } else {
@@ -77,7 +79,7 @@ export default function MovieCard({ movie, action, moveLeft, moveRight }) {
         image={
           movie.poster_path
             ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-            : img
+            : uploadedImage || img
         }
       />
       <CardContent>
@@ -102,11 +104,20 @@ export default function MovieCard({ movie, action, moveLeft, moveRight }) {
             <ArrowBackIcon fontSize="large" />
           </IconButton>
           {action(movie)}
-          <Link to={`/movies/${movie.id}`}>
-            <Button variant="outlined" size="medium" color="primary">
-              More Info ...
-            </Button>
-          </Link>
+          {!movie.fantasy ?
+            <Link to={`/movies/${movie.id}`}>
+              <Button variant="outlined" size="medium" color="primary">
+                More Info ...
+              </Button>
+            </Link>
+            :
+            <Link to={`/movies/${movie.title}`}>
+              <Button variant="outlined" size="medium" color="primary">
+                More Info ...
+              </Button>
+            </Link>
+
+          }
           <IconButton onClick={() => moveRight(movie.id)} color="primary" aria-label="move right">
             <ArrowForwardIcon fontSize="large" />
           </IconButton>
