@@ -9,7 +9,7 @@ const Image = ({ image }) => {
   if (!image.poster_path) {
     return (
       <ImageList cols={1}>
-        <ImageSource path={image.profile_path} title={image.title} key={image.title} />
+        <ImageSource path={image.profile_path} title={image.title} key={image.title?.replace(/\s/g, "")} />
       </ImageList>
     );
   }
