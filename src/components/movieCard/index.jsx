@@ -15,6 +15,9 @@ import { Link } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import { MediaContext } from "../../contexts/mediaContext";
 import PlaylistAddCheckIcon from "@mui/icons-material/PlaylistAddCheck";
+import { IconButton } from "@mui/material";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const styles = {
   card: { maxWidth: 345 },
@@ -25,7 +28,7 @@ const styles = {
   },
 };
 
-export default function MovieCard({ movie, action }) {
+export default function MovieCard({ movie, action, moveLeft, moveRight }) {
   const { favourites, addToFavourites, mustWatch, addToMustWatch } = useContext(MediaContext);
   if (favourites.find((id) => id === movie.id)) {
     movie.favourite = true;
@@ -94,12 +97,20 @@ export default function MovieCard({ movie, action }) {
         </Grid>
       </CardContent>
       <CardActions disableSpacing>
-        {action(movie)}
-        <Link to={`/movies/${movie.id}`}>
-          <Button variant="outlined" size="medium" color="primary">
-            More Info ...
-          </Button>
-        </Link>
+        <div style={styles.actionContainer}>
+          <IconButton onClick={() => moveLeft(movie.id)} color="primary" aria-label="move left">
+            <ArrowBackIcon fontSize="large" />
+          </IconButton>
+          {action(movie)}
+          <Link to={`/movies/${movie.id}`}>
+            <Button variant="outlined" size="medium" color="primary">
+              More Info ...
+            </Button>
+          </Link>
+          <IconButton onClick={() => moveRight(movie.id)} color="primary" aria-label="move right">
+            <ArrowForwardIcon fontSize="large" />
+          </IconButton>
+        </div>
       </CardActions>
     </Card>
   );
