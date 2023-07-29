@@ -58,6 +58,10 @@ const MediaContextProvider = (props) => {
     setFantasyMovies(updatedFantasyMovies);
   };
 
+  const getFantasyMovie = (id) => {
+    return fantasyMovies.find(movie => movie.title == id);
+  };
+
   return (
     <MediaContext.Provider
       value={{
@@ -71,6 +75,7 @@ const MediaContextProvider = (props) => {
         removeFromMustWatch,
         fantasyMovies,
         addFantasyMovie,
+        getFantasyMovie
       }}
     >
       {props.children}
