@@ -25,6 +25,19 @@ const MediaContextProvider = (props) => {
     }
   };
 
+  const setUploadedImage = (movieTitle, uploadedImage) => {
+    setFantasyMovies(fantasyMovies.map(movie =>
+      movie.title === movieTitle
+        ? { ...movie, uploadedImage }
+        : movie
+    ));
+  };
+
+  const getUploadedImage = (movieTitle) => {
+    const movie = fantasyMovies.find(m => m.title === movieTitle);
+    return movie?.uploadedImage;
+  };
+
   const addToMustWatch = (movie) => {
     let updatedMustWatch = [...mustWatch];
     if (!mustWatch.includes(movie.id)) {
@@ -75,6 +88,8 @@ const MediaContextProvider = (props) => {
         removeFromMustWatch,
         fantasyMovies,
         addFantasyMovie,
+        setUploadedImage,
+        getUploadedImage,
         getFantasyMovie
       }}
     >
