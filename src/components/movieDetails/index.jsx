@@ -50,7 +50,7 @@ const MovieDetails = ({ movie }) => {
         <li>
           <Chip label="Genres" sx={styles.chipLabel} color="primary" />
         </li>
-        {movie.genres.map((g) => (
+        {movie.genres?.map((g) => (
           <li key={g.name}>
             <Chip label={g.name} />
           </li>
@@ -60,7 +60,7 @@ const MovieDetails = ({ movie }) => {
         <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
         <Chip
           icon={<MonetizationIcon />}
-          label={`${movie.revenue.toLocaleString()}`}
+          label={`${movie.revenue?.toLocaleString()}`}
         />
         <Chip
           icon={<StarRate />}
