@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import MovieDetails from "../components/movieDetails";
 import PageTemplate from "../components/templateMediaPage";
 import { getMovie } from '../api/tmdb-api'
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner'
+import { MediaContext } from "../contexts/mediaContext";
 
 const MovieDetailsPage = () => {
   const { id } = useParams();
+  const context = useContext(MediaContext);
+  const data = context.getFantasyMovie(id);
 
   const { data: movie, error, isLoading, isError } = useQuery(
     ["movie", { id: id }],
-    getMovie
+    getMovie,
+    {
+      enabled: !data,
+    }
   );
 
   if (isLoading) {
@@ -31,7 +37,9 @@ const MovieDetailsPage = () => {
           </PageTemplate>
         </>
       ) : (
-        <p>Waiting for movie details</p>
+        <PageTemplate media={data}>
+          <MovieDetails movie={data} />
+        </PageTemplate>
       )}
     </>
   );

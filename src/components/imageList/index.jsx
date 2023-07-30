@@ -6,10 +6,10 @@ import { useQuery } from "react-query";
 import Spinner from '../spinner'
 
 const Image = ({ image }) => {
-  if (image.hasOwnProperty("profile_path")) {
+  if (!image?.poster_path) {
     return (
       <ImageList cols={1}>
-        <ImageSource path={image.profile_path} />
+        <ImageSource path={image?.profile_path} title={image?.title} key={image?.title?.replace(/\s/g, "")} />
       </ImageList>
     );
   }

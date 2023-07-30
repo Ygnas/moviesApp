@@ -34,9 +34,9 @@ const MediaHeader = ({ data }) => {
         </Avatar>
       ) : null}
       <Typography variant="h4" component="h3">
-        {data.title || data.name}{"   "}
+        {data?.title || data?.name}{"   "}
         {
-          data.homepage
+          data?.homepage
             ? <a href={data.homepage}>
               <HomeIcon color="primary" fontSize="='large" />
             </a>
@@ -44,7 +44,7 @@ const MediaHeader = ({ data }) => {
         }
         <br />
         {
-          data.tagline
+          data?.tagline
             ? <span>{`${data.tagline}`} </span>
             : null
         }

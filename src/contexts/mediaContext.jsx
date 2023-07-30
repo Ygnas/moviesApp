@@ -25,6 +25,35 @@ const MediaContextProvider = (props) => {
     }
   };
 
+  const setUploadedImage = (movieTitle, uploadedImage) => {
+    setFantasyMovies(fantasyMovies.map(movie =>
+      movie.title === movieTitle
+        ? { ...movie, uploadedImage }
+        : movie
+    ));
+  };
+
+  const getUploadedImage = (movieTitle) => {
+    const movie = fantasyMovies.find(m => m.title === movieTitle);
+    return movie?.uploadedImage;
+  };
+
+  const setFantasyActor = (actor, movieTitle) => {
+    setFantasyMovies((prevMovies) =>
+      prevMovies.map(movie =>
+        movie.title === movieTitle ? { ...movie, actors: [...movie.actors, actor] } : movie
+      )
+    );
+  }
+
+  const getFantasyActor = (actorName) => {
+    for (let movie of fantasyMovies) {
+      let matchingActor = movie.actors.find(actor => actor.name === actorName);
+      if (matchingActor) return matchingActor;
+    }
+    return null;
+  };
+
   const addToMustWatch = (movie) => {
     let updatedMustWatch = [...mustWatch];
     if (!mustWatch.includes(movie.id)) {
@@ -58,6 +87,10 @@ const MediaContextProvider = (props) => {
     setFantasyMovies(updatedFantasyMovies);
   };
 
+  const getFantasyMovie = (id) => {
+    return fantasyMovies.find(movie => movie.title == id);
+  };
+
   return (
     <MediaContext.Provider
       value={{
@@ -71,6 +104,11 @@ const MediaContextProvider = (props) => {
         removeFromMustWatch,
         fantasyMovies,
         addFantasyMovie,
+        setUploadedImage,
+        getUploadedImage,
+        setFantasyActor,
+        getFantasyActor,
+        getFantasyMovie
       }}
     >
       {props.children}

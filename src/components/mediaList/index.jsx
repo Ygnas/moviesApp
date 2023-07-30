@@ -31,7 +31,7 @@ const MediaList = ({ media, action }) => {
   return (
     <>
       {ordered.map((m) => (
-        <Grid key={m.id} item xs={12} sm={6} md={4} lg={3} xl={2}>
+        <Grid key={m.id || m.title} item xs={12} sm={6} md={4} lg={3} xl={2}>
           {m.title ? <Movie movie={m} action={action} moveLeft={moveLeft} moveRight={moveRight} /> : <MediaActor actor={m} action={action} />}
         </Grid>
       ))}
