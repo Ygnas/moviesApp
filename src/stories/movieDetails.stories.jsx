@@ -2,7 +2,7 @@ import React from "react";
 import MovieDetails from "../components/movieDetails";
 import SampleMovie from "./sampleData";
 import { MemoryRouter } from "react-router";
-import MoviesContextProvider from "../contexts/moviesContext";
+import MoviesContextProvider from "../contexts/mediaContext";
 
 export default {
   title: "Movie Details Page/MovieDetails",

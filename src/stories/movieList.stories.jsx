@@ -1,18 +1,18 @@
 import React from "react";
-import MovieList from "../components/movieList";
+import MovieList from "../components/mediaList";
 import SampleMovie from "./sampleData";
 import { MemoryRouter } from "react-router";
 import { action } from "@storybook/addon-actions";
 import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
 import Grid from "@mui/material/Grid";
-import MoviesContextProvider from "../contexts/moviesContext";
+import MoviesContextProvider from "../contexts/mediaContext";
 
 export default {
   title: "Home Page/MovieList",
   component: MovieList,
   decorators: [
     (Story) => <MemoryRouter initialEntries={["/"]}>{Story()}</MemoryRouter>,
-    (Story) => <MoviesContextProvider>{Story()}</MoviesContextProvider>,
+    (Story) => { Story() },
   ],
 };
 
