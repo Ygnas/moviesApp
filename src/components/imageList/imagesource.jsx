@@ -14,7 +14,7 @@ export function ImageSource({ path, title }) {
   }
 
   return (
-    <ImageListItem key={path} cols={1}>
+    <ImageListItem key={title} cols={1}>
       {
         path
           ? <img src={`https://image.tmdb.org/t/p/w500/${path}`} alt={path} />
