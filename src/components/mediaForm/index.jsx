@@ -45,6 +45,7 @@ const MediaForm = ({ movie }) => {
 
   const onSubmit = (movie) => {
     movie.genres = genres
+    movie.actors = []
     movie.fantasy = true
     context.addFantasyMovie(movie)
     setOpen(true);

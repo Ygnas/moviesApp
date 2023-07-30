@@ -56,7 +56,7 @@ function ActorListPageTemplate({ actors, title, action }) {
           <Header title={title} />
         </Grid>
         <Grid item container spacing={5}>
-          <MediaList action={action} media={displayedActors} />
+          <MediaList key={displayedActors.name} action={action} media={displayedActors} />
         </Grid>
       </Grid>
       {token ?
