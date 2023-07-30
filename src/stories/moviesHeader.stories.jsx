@@ -1,7 +1,7 @@
 import React from "react";
 import MoviesHeader from "../components/headerMovieList";
 import { MemoryRouter } from "react-router";
-import MoviesContextProvider from "../contexts/moviesContext";
+import MoviesContextProvider from "../contexts/mediaContext";
 
 export default {
   title: "Home Page/MoviePageHeader",
