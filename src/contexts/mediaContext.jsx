@@ -38,6 +38,22 @@ const MediaContextProvider = (props) => {
     return movie?.uploadedImage;
   };
 
+  const setFantasyActor = (actor, movieTitle) => {
+    setFantasyMovies((prevMovies) =>
+      prevMovies.map(movie =>
+        movie.title === movieTitle ? { ...movie, actors: [...movie.actors, actor] } : movie
+      )
+    );
+  }
+
+  const getFantasyActor = (actorName) => {
+    for (let movie of fantasyMovies) {
+      let matchingActor = movie.actors.find(actor => actor.name === actorName);
+      if (matchingActor) return matchingActor;
+    }
+    return null;
+  };
+
   const addToMustWatch = (movie) => {
     let updatedMustWatch = [...mustWatch];
     if (!mustWatch.includes(movie.id)) {
@@ -90,6 +106,8 @@ const MediaContextProvider = (props) => {
         addFantasyMovie,
         setUploadedImage,
         getUploadedImage,
+        setFantasyActor,
+        getFantasyActor,
         getFantasyMovie
       }}
     >
