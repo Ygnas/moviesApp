@@ -3,19 +3,24 @@ import PageTemplate from "../components/templateMovieListPage";
 import { MediaContext } from "../contexts/mediaContext";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../contexts/authContext";
 
 const FantasyMovie = (props) => {
   const { fantasyMovies } = useContext(MediaContext);
+  const { token } = useContext(AuthContext);
   return (
     <PageTemplate
       title={
         <>
           Fantasy Movie
-          <Link to={`/movie/form`}>
-            <Button size="medium" variant="contained" color="success">
-              Add new fantasy movie
-            </Button>
-          </Link>
+          {
+            token && !context.favouriteActors.includes(media.id) && !context.favourites.includes(media.id) ?
+              <Link to={`/movie/form`}>
+                <Button size="medium" variant="contained" color="success">
+                  Add new fantasy movie
+                </Button>
+              </Link> :
+              () => { }}
         </>
       }
       movies={fantasyMovies}
